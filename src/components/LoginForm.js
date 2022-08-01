@@ -15,6 +15,11 @@ const LoginForm = ({ existingUser }) => {
       alert(error.message);
     }
   };
+  const registerUser = async () => {
+    try {
+      firebaseAuthService.registerUser(userName, userPassword);
+    } catch (error) {}
+  };
   const loginWithGoogle = async () => {
     try {
       await firebaseAuthService.loginwithGoogle();
@@ -52,7 +57,7 @@ const LoginForm = ({ existingUser }) => {
           </button>
         </div>
       ) : (
-        <div onClick={handleSubmit} className="login-form">
+        <div className="login-form">
           <label className="input-label login-label">
             User (Email):
             <input
@@ -79,7 +84,9 @@ const LoginForm = ({ existingUser }) => {
             />
           </label>
           <div className="button-box">
-            <button className="primary-button">Login</button>
+            <button className="primary-button" onClick={handleSubmit}>
+              Login
+            </button>
             <button
               className="primary-button"
               type="button"
